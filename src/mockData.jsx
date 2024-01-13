@@ -1,8 +1,4 @@
-import { tokens } from "../theme";
-
-
-
-
+import { tokens } from "./components/RecentTransactions";
 
 
 export const mockTransactions = [

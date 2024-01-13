@@ -17,6 +17,7 @@ import Typography from "@mui/material/Typography";
 import SvgIcon from "@mui/material/SvgIcon";
 import Grid from "@mui/material/Grid";
 import Container from "@mui/material/Container";
+import RecentTransactions from "./RecentTransactions";
 
 function HomeIcon(props) {
   return (
@@ -29,7 +30,6 @@ function HomeIcon(props) {
 function SvgIconChildren() {
   return (
     <SvgIcon>
-      {/* credit: plus icon from https://heroicons.com/ */}
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
@@ -119,9 +119,8 @@ function ResponsiveDrawer(props) {
       <Box
         component="nav"
         sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
-        aria-label="mailbox folders"
+        aria-label="folders"
       >
-        {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
         <Drawer
           container={container}
           variant="temporary"
@@ -129,7 +128,7 @@ function ResponsiveDrawer(props) {
           onTransitionEnd={handleDrawerTransitionEnd}
           onClose={handleDrawerClose}
           ModalProps={{
-            keepMounted: true, // Better open performance on mobile.
+            keepMounted: true,
           }}
           sx={{
             display: { xs: "block", sm: "none" },
@@ -159,23 +158,24 @@ function ResponsiveDrawer(props) {
         component="main"
         sx={{
           flexGrow: 1,
-          pt: 4,  
-          pb: 4, 
+          pt: 4,
+          pb: 4,
           pl: 2,
           pr: 2,
           width: { sm: `calc(100% - ${drawerWidth}px)` },
         }}
       >
         <Toolbar />
-       
-          <Container>
-            <Grid container spacing={4}>
-              <InfoCard />
-              <InfoCard />
-              <InfoCard />
-            </Grid>
-          </Container>
-
+        <Container>
+          <Grid container spacing={4}>
+            <InfoCard chartData={mockBarData} />
+            <InfoCard chartData={mockBarData} />
+            <InfoCard chartData={mockBarData} />
+          </Grid>
+          <Grid container spacing={4}>
+            <RecentTransactions transactions={mockTransactions} />
+          </Grid>
+        </Container>
       </Box>
     </Box>
   );
